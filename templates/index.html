@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: rgb(249, 246, 214);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            height:400px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            padding:10px;
+        }
+        .login-container input[type="text"]{
+            margin-top:10px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width:75%;
+            padding: 10px;
+            margin-right:20px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .login-container input[type="submit"] {
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .sign{
+            display:block;
+            margin-top:7px;
+            font-size:12px;
+        }
+        .sign_up_link{
+            text-decoration: none;
+            font-size:14px;
+            font-style: bold;
+            margin-left:2px;
+        }
+        #warning {
+            width: 150px;
+            border: 2px solid red;
+            border-radius: 2px;
+            padding: 5px;
+            font-size: 12px;
+            background-color: rgb(253, 201, 201);
+            color: black;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            text-align:center;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for message in messages %}
+                    <p id="warning">{{ message }}</p>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <script>
+        var element = document.getElementById("warning");
+
+            // Function to hide the element
+        function hideElement() {
+            element.style.display = "none";
+        }
+        setTimeout(hideElement, 1000);
+    </script>
+
+
+    <div class="login-container">
+        <h2>Login Page</h2>
+        <img src="https://imgs.search.brave.com/_QS-C_ZdFRoEEb83lITyO3dY1Y6syO6ywUb65b2ZRcQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/dzNzY2hvb2xzLmNv/bS9ob3d0by9pbWdf/YXZhdGFyLnBuZw" alt="User" width="100px" height="100px"></img>
+        <form action="/login_validation" method="POST">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Login">
+            <div class="sign">
+                Not a member<a href="/sign_in" class="sign_up_link">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
